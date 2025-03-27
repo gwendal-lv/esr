@@ -1,0 +1,4 @@
+services:
+  client1:
+    image: eclipse-mosquitto
+    command: sh
