@@ -58,13 +58,19 @@ TODO besoin de l'IP host dans Docker
 
 On va maintenant récupérer des informations via MQTT, depuis le broker ```eu1.cloud.thethings.network``` chez The Things Network (TTN). Une application IoT avec des noeuds LoRaWAN a déjà été créée. L'accès aux données est toutefois sécurisé :
 - utilisateur : ```stm32-end-node-basic@ttn```
-- mot de passe (mars 2024) : ```NNSXS.JZP7KEYXIXNSU7JANLTZ6UWZVMLNT3WRNMYGQBY.6HJXAMYSABCMK3DBT5GGXUKPLDJ46DLQGAVTMYPIXKG2VHGATRAQ```
+- mot de passe (avril 2025) : ```NNSXS.JZP7KEYXIXNSU7JANLTZ6UWZVMLNT3WRNMYGQBY.6HJXAMYSABCMK3DBT5GGXUKPLDJ46DLQGAVTMYPIXKG2VHGATRAQ```
 
 Exercice : 
+
 - Dans un conteneur mosquitto, souscrire à tous les topics grâce à l'argument ```-t '#'```. Si besoin, un exemple de commande mosquitto est disponible dans [la doc de TTN](https://www.thethingsindustries.com/docs/integrations/mqtt/#mqtt-clients).
 - Analyser le contenu des *payloads* reçus.
 - Refaire la souscription, en ajoutant l'option ```-d```. Quels sont les différents topics ? Quels sont les autres échanges entre le client et le broker ? 
 - Tester ensuite la souscription à un seul noeud IoT en particulier (par exemple ```eui-0080e115000a930c```).
+- On va maintenant utiliser l'utilitaire ```jq``` pour afficher proprement du JSON puis extraire seulement certaines informations des messages reçus. 
+    - Pour installer ```jq``` à l'intérieur d'un conteneur, on utilisera ```apk add jq``` (car ```apt``` n'est pas disponible dans les conteneurs docker basés sur alpine linux).
+    - Ajouter la commande ```| jq '.'``` à la fin de la ligne exécutant la commande ```mosquitto_sub```, et rappeler à quoi sert le *pipe* (```|```). Constater que le formatage JSON est bien meilleur
+    - Pour extraire des champs correspondants aux clés CLE1 puis CLE2 d'une chaîne JSON, la syntaxe de base est ```| jq '.CLE1.CLE2'```. Utiliser ```jq``` pour d'extraire uniquement *decoded_payload*, ou bien uniquement la température, etc. 
+- À quoi sert l'option ```-c``` de ```jq``` ? 
 
 # Références
 
@@ -72,3 +78,4 @@ Exercice :
 - MQTT : 
     - https://mqtt.org
     - https://www.hivemq.com/mqtt/
+- https://jqlang.org/
