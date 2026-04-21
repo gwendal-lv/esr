@@ -29,30 +29,19 @@ Caractéristiques :
 
 ### Transmission de messages via broker externe
 
-On va ici tester l'envoi et la réception de messages à travers un [broker public](https://www.hivemq.com/mqtt/public-mqtt-broker/).
+On va ici tester l'envoi et la réception de messages à travers un [broker public](https://www.hivemq.com/mqtt/public-mqtt-broker/) : `broker.hivemq.com`.
+Si ce broker est surchargé (indisponible ou lent à répondre), utiliser le broker interne IRISIB sur `172.30.2.204`.
 
-- Depuis Docker Desktop, ou bien depuis un terminal, récupérer l'image Docker ```eclipse-mosquitto```. Elle pourra servir de broker aussi bien que de client MQTT.
-- Dans un terminal, créer un conteneur appelé ```mqtt-client-1``` via la commande :  ```docker run -it --name mqtt-client-1 eclipse-mosquitto sh```. Cela permet d'exécuter immédiatement des commandes à l'intérieur du conteneur.
-- Exécuter la commande ```mosquitto_sub -t brufor_PRENOM -h broker.hivemq.com -p 1883```, en remplaçant PRENOM par votre prénom (sans espace ni caractère spécial). Que signifient la commande ```sub``` et les arguments ```-t```, ```-h``` et ```-p``` ?
+- Ouvrir un nouveau terminal. À l'aide de la commande ```mosquitto_sub```, faire la souscription au topic `brufor_PRENOM` en remplaçant PRENOM par votre prénom (sans espace ni caractère spécial). 
 - Constater qu'il ne passe rien dans la console (c'est normal). Pourquoi ?
-- Dans un terminal, créer un 2ème conteneur appelé ```mqtt-client-2```.
-- Depuis ce conteneur, exécuter la commande ```mosquitto_pub -t brufor_PRENOM -h broker.hivemq.com -p 1883 -m 'Coucou !'```. Que signifient la commande ```pub```et l'argument ```-m``` ?
-- Vérifier dans l'autre terminal ```mqtt-client-1``` la bonne réception du message.
-- Créer un 3ème et un 4ème conteneur à partir de l'image ```eclipse-mosquitto```. Tester la publication (conteneur 3) et la souscription (conteneur 4) à votre topic. Vérifier la réception des messages dans tous les conteneurs actifs.
+- Dans un second terminal, utiliser la commande `mosquitto_pub` pour envoyer le message `Coucou !` au premier terminal. Vérifier la bonne réception du message.
+- Créer un 3ème et un 4ème terminal à partir de l'image ```eclipse-mosquitto```. Tester la publication (terminal 3) et la souscription (terminal 4) à votre topic. Vérifier la réception des messages dans tous les conteneurs actifs.
 
 
 ### Transmission de messages via broker externe - topic partagé
 
-- Créer 2 conteneurs ```eclipse-mosquitto```. Dans le premier, souscrire au topic ```brufor_essentiel_reseau```. Dans le second, publier des messages sur ce même topic.
+- Ouvrir deux onglets de terminal. Dans le premier, souscrire au topic ```brufor_essentiel_reseau```. Dans le second, publier des messages sur ce même topic.
 - Vérifier que les messages sont reçus par tous les stagiaires.
-
-<!-- 
-### Utilisation d'un broker local
-
-TODO besoin de l'IP host dans Docker
-- Depuis Docker Desktop, récupérer l'image du broker ```eclipse-mosquitto```. Lancer alors cette dans un conteneur avec le nom 'mqtt-broker' et en assignant le port 1883 de la machine au port 1883 du conteneur.
-- À partir de 2 autres conteneurs basés sur ```emqx/mqttx-cli```, tester ce broker local. Son adresse sera ```TODO```.
--->
 
 ### Broker MQTT IoT : The Things Network
 
@@ -67,8 +56,7 @@ Exercice :
 - Refaire la souscription, en ajoutant l'option ```-d```. Quels sont les différents topics ? Quels sont les autres échanges entre le client et le broker ? 
 - Tester ensuite la souscription à un seul noeud IoT en particulier (par exemple ```eui-0080e115000a930c```).
 - On va maintenant utiliser l'utilitaire ```jq``` pour afficher proprement du JSON puis extraire seulement certaines informations des messages reçus. 
-    - Pour installer ```jq``` à l'intérieur d'un conteneur, on utilisera ```apk add jq``` (car ```apt``` n'est pas disponible dans les conteneurs docker basés sur alpine linux).
-    - Ajouter la commande ```| jq '.'``` à la fin de la ligne exécutant la commande ```mosquitto_sub```, et rappeler à quoi sert le *pipe* (```|```). Constater que le formatage JSON est bien meilleur
+    - Ajouter la commande ```| jq '.'``` à la fin de la ligne exécutant la commande ```mosquitto_sub```, et rappeler à quoi sert le *pipe* (```|```). Constater que le formatage JSON est bien meilleur.
     - Pour extraire des champs correspondants aux clés CLE1 puis CLE2 d'une chaîne JSON, la syntaxe de base est ```| jq '.CLE1.CLE2'```. Utiliser ```jq``` pour d'extraire uniquement *decoded_payload*, ou bien uniquement la température, etc. 
 - À quoi sert l'option ```-c``` de ```jq``` ? 
 
@@ -78,4 +66,6 @@ Exercice :
 - MQTT : 
     - https://mqtt.org
     - https://www.hivemq.com/mqtt/
+- [JSON: JavaScript Object Notation](https://fr.wikipedia.org/wiki/JavaScript_Object_Notation)
 - https://jqlang.org/
+
