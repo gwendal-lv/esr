@@ -30,7 +30,7 @@ Caractéristiques :
 ### Transmission de messages via broker externe
 
 On va ici tester l'envoi et la réception de messages à travers un [broker public](https://www.hivemq.com/mqtt/public-mqtt-broker/) : `broker.hivemq.com`.
-Si ce broker est surchargé (indisponible ou lent à répondre), utiliser le broker interne IRISIB sur `172.30.2.204`.
+Si ce broker est surchargé (indisponible ou lent à répondre), utiliser un broker interne sur le local réseau (IP à confirmer avec le formateur).
 
 - Ouvrir un nouveau terminal. À l'aide de la commande ```mosquitto_sub```, faire la souscription au topic `brufor_PRENOM` en remplaçant PRENOM par votre prénom (sans espace ni caractère spécial). 
 - Constater qu'il ne passe rien dans la console (c'est normal). Pourquoi ?
