@@ -8,7 +8,7 @@ Moteur de lancement d'un ensemble de conteneurs dépendant les uns des autres (a
 
 ## Exercice
 
-1. Télécharger tout le code du repository https://github.com/docker/awesome-compose/ (Code -> Download ZIP)
+1. Télécharger tout le code de ce repository (https://github.com/gwendal-lv/esr -> Code -> Download ZIP)
 2. Extraire le code. Ouvrir un terminal, puis se déplacer (commande ```cd```) vers le dossier extrait.
 3. Dans le terminal, se déplacer vers le sous-dossier ```nginx-nodejs-redis```, puis afficher le contenu de ce dossier.
 4. Taper la commande ```docker compose up```.
