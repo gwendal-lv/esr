@@ -58,7 +58,7 @@ e08d8c51efdc   none                   null      local
 
 ## Docker compose avec 3 conteneurs
 
-1. Télécharger le dossier ```./network_demo``` et s'y déplacer dans le terminal.
+1. Depuis le terminal, se déplacer dans le dossier de ce repository (déjà téléchargé pour un exercice précédent). Ensuite, se déplacer dans le sous-dossier ```network_demo```.
 2. Analyser le fichier docker compose (```cat docker-compose.yml```) : quel service est disponible sur quel port ?
 3. Lancer les conteneurs (```docker compose up -d```), puis lister tous les conteneurs actifs (```docker ps```).
 4. Vérifier dans le navigateur le fonctionnement des 3 conteneurs.
