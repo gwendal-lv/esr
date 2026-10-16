@@ -35,7 +35,7 @@ Si ce broker est surchargé (indisponible ou lent à répondre), utiliser un bro
 - Ouvrir un nouveau terminal. À l'aide de la commande ```mosquitto_sub```, faire la souscription au topic `brufor_PRENOM` en remplaçant PRENOM par votre prénom (sans espace ni caractère spécial). 
 - Constater qu'il ne passe rien dans la console (c'est normal). Pourquoi ?
 - Dans un second terminal, utiliser la commande `mosquitto_pub` pour envoyer le message `Coucou !` au premier terminal. Vérifier la bonne réception du message.
-- Créer un 3ème et un 4ème terminal à partir de l'image ```eclipse-mosquitto```. Tester la publication (terminal 3) et la souscription (terminal 4) à votre topic. Vérifier la réception des messages dans tous les conteneurs actifs.
+- Créer un 3ème puis un 4ème terminal. Tester la publication (terminal 3) et la souscription (terminal 4) à votre topic. Vérifier la réception des messages dans tous les conteneurs actifs.
 
 
 ### Transmission de messages via broker externe - topic partagé
